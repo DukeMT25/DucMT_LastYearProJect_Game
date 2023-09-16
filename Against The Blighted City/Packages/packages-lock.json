@@ -1,5 +1,21 @@
 {
   "dependencies": {
+    "com.sadsapphicgames.cardengine": {
+      "version": "https://github.com/cmwedin/CardEngine.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.textmeshpro": "3.0.0"
+      },
+      "hash": "196682b7ec7194f76af15ace58a36c85fdfec288"
+    },
+    "com.sadsapphicgames.commandpattern": {
+      "version": "https://github.com/cmwedin/CommandPattern.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7e2fa382eec1979249575fefabec50cfc6f23052"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -62,7 +78,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.20",
+      "version": "2.0.21",
       "depth": 0,
       "source": "registry",
       "dependencies": {

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3301592729533325685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775f0151bd320ce4686eb9ae5f84801f, type: 3}
+  m_Name: Basic StrikeAttackData
+  m_EditorClassIdentifier: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774c1f608f20a2e4ba1b1c0fd3cf900f, type: 3}
+  m_Name: Basic Strike
+  m_EditorClassIdentifier: 
+  _cardSprite: {fileID: 0}
+  _cardText: Attack an unit for 5 damage
+  _cardTypes:
+  - {fileID: 11400000, guid: 44d874a3f1917c344a04553f7fa6d3a9, type: 2}
+  _cardEffect: {fileID: 11400000, guid: bc3669c0c6d4be5438c706a7bcfe0b59, type: 2}
+  typesSubData:
+  - typeName: Attack
+    typeSubdata: {fileID: -3301592729533325685}
+  cardCosts: []
