@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public interface IUiPlayerHand : IUiCardPile
     {
-        List<IUiCard> Cards { get; }
+        public List<IUiCard> Cards { get; }
         Action<IUiCard> OnCardPlayed { get; set; }
         Action<IUiCard> OnCardSelected { get; set; }
         void PlaySelected();
