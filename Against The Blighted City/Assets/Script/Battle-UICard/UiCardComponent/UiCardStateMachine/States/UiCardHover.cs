@@ -48,20 +48,20 @@ public class UiCardHover : UiBaseCardState
     ///     View Math.
     /// </summary>
     void SetPosition()
-    {
-        var camera = Handler.MainCamera;
-        var halfCardHeight = new Vector3(0, Handler.Renderer.bounds.size.y / 2);
-        var bottomEdge = Handler.MainCamera.ScreenToWorldPoint(Vector3.zero);
-        var topEdge = Handler.MainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height));
-        var edgeFactor = Handler.transform.CloserEdge(camera, Screen.width, Screen.height);
-        var myEdge = edgeFactor == 1 ? bottomEdge : topEdge;
-        var edgeY = new Vector3(0, myEdge.y);
-        var currentPosWithoutY = new Vector3(Handler.transform.position.x, 0, Handler.transform.position.z);
-        var hoverHeightParameter = new Vector3(0, Parameters.HoverHeight);
-        var final = currentPosWithoutY + edgeY + (halfCardHeight + hoverHeightParameter) * edgeFactor;
+    {    
+        Camera camera = Handler.MainCamera;
+        Vector3 halfCardHeight = new Vector3(0, Handler.Renderer.bounds.size.y / 2);
+        Vector3 bottomEdge = Handler.MainCamera.ScreenToWorldPoint(Vector3.zero);
+        Vector3 topEdge = Handler.MainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height));
+        int edgeFactor = Handler.transform.CloserEdge(camera, Screen.width, Screen.height);
+        Vector3 myEdge = edgeFactor == 1 ? bottomEdge : topEdge;
+        Vector3 edgeY = new Vector3(0, myEdge.y);
+        Vector3 currentPosWithoutY = new Vector3(Handler.transform.position.x, 0, Handler.transform.position.z);
+        Vector3 hoverHeightParameter = new Vector3(0, Parameters.HoverHeight);
+        Vector3 final = currentPosWithoutY + edgeY + (halfCardHeight + hoverHeightParameter) * edgeFactor;
         Handler.MoveTo(final, Parameters.HoverSpeed);
     }
-
+    
     void SetScale()
     {
         var currentScale = Handler.transform.localScale;

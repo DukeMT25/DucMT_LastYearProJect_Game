@@ -23,6 +23,6 @@ MonoBehaviour:
   rotationSpeed: 40
   rotationSpeedP2: 250
   movementSpeed: 8
-  scaleSpeed: 6
+  scaleSpeed: 3
   startSizeWhenDraw: 0.5
   discardedSize: 0.5
