@@ -10,6 +10,8 @@ public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
 
+    [SerializeField] UiPlayerHandUtils CardDrawer;
+
     //Player
     public GameObject playerPrefab;
     public Transform playerPos;
@@ -34,30 +36,16 @@ public class BattleSystem : MonoBehaviour
     public BattleHUD enemyHUD;
 
 
-    //Take note from UiPlayerHandUtils
-    #region Fields
-    int Count { get; set; } 
-    [SerializeField] [Tooltip("Prefab of the Card C#")]
-    GameObject cardPrefabCs;
 
-    [SerializeField] [Tooltip("World point where the deck is positioned")]
-    Transform deckPosition;
-
-    [SerializeField] [Tooltip("Game view transform")]
-    Transform gameView;
-
-    [SerializeField] 
-    UiPlayerHand PlayerHand;
-    #endregion
 
     void Start()
     {
         state = BattleState.START;
-        //StartCoroutine(SetupBattle());
-        SetupBattle();
+        StartCoroutine(SetupBattle());
+        //SetupBattle();
     }
 
-    void SetupBattle()
+    IEnumerator SetupBattle()
     {
         //Player
         GameObject playerGO = Instantiate(playerPrefab, playerPos);
@@ -80,8 +68,8 @@ public class BattleSystem : MonoBehaviour
         //starting cards
         for (int i = 0; i < 5; i++)
         {
-            //yield return new WaitForSeconds(0.4f);
-            DrawCard();
+            yield return new WaitForSeconds(0.4f);
+            CardDrawer.DrawCard();
         }
 
         //TURN
@@ -102,38 +90,4 @@ public class BattleSystem : MonoBehaviour
     //     //somethinghere
     // }
 
-    #region Operations
-
-        [Button]
-        public void DrawCard()
-        {
-            //TODO: Consider replace Instantiate by an Object Pool Pattern
-            GameObject cardGo = Instantiate(cardPrefabCs, gameView);
-            cardGo.name = "Card_" + Count;
-            IUiCard card = cardGo.GetComponent<IUiCard>();
-            card.transform.position = deckPosition.position;
-            Count++;
-            PlayerHand.AddCard(card);
-        }
-
-        [Button]
-        public void PlayCard()
-        {
-            if (PlayerHand.Cards.Count > 0)
-            {
-                var randomCard = PlayerHand.Cards.RandomItem();
-                PlayerHand.PlayCard(randomCard);
-            }
-        }
-
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Tab)) DrawCard();
-            if (Input.GetKeyDown(KeyCode.Space)) PlayCard();
-            if (Input.GetKeyDown(KeyCode.Escape)) Restart();
-        }
-
-        public void Restart() => SceneManager.LoadScene(0);
-
-        #endregion
 }

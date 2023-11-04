@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7409789685864126333}
   - component: {fileID: 5531196491093656409}
   - component: {fileID: 8830328501740765155}
-  - component: {fileID: 2463323583609915220}
   m_Layer: 5
   m_Name: SimpleCard
   m_TagString: Untagged
@@ -104,9 +103,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 446225723
+  m_SortingLayer: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 8e1c12db3653e1a45859c24a46e79cc0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -143,14 +142,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardConfigsParameters: {fileID: 11400000, guid: 6d7b65645f274304d80487aa5d5a537b, type: 2}
---- !u!210 &2463323583609915220
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4612273048400801218}
-  m_Enabled: 1
-  m_SortingLayerID: 446225723
-  m_SortingLayer: 1
-  m_SortingOrder: 10

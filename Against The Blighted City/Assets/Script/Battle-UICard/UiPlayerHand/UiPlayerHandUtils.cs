@@ -20,23 +20,23 @@ public class UiPlayerHandUtils : MonoBehaviour
 
         IUiPlayerHand PlayerHand { get; set; }
 
-        #endregion
+    #endregion
 
         //--------------------------------------------------------------------------------------------------------------
 
-        #region Unitycallbacks
+            #region Unitycallbacks
 
         void Awake() => PlayerHand = transform.parent.GetComponentInChildren<IUiPlayerHand>();
 
-        IEnumerator Start()
-        {
-            //starting cards
-            for (var i = 0; i < 5; i++)
-            {
-                yield return new WaitForSeconds(0.2f);
-                DrawCard();
-            }
-        }
+        // IEnumerator Start()
+        // {
+        //     //starting cards
+        //     for (var i = 0; i < 5; i++)
+        //     {
+        //         yield return new WaitForSeconds(0.2f);
+        //         DrawCard();
+        //     }
+        // }
 
         #endregion
 

@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: UiCardParameters
   m_EditorClassIdentifier: 
   disabledAlpha: 0.5
-  hoverHeight: 3
+  hoverHeight: 1
   hoverRotation: 0
-  hoverScale: 1.5
-  hoverSpeed: 14
-  height: 0
+  hoverScale: 1.3
+  hoverSpeed: 15
+  height: 0.1
   spacing: -1
   bentAngle: 10
-  rotationSpeed: 40
-  rotationSpeedP2: 250
-  movementSpeed: 8
-  scaleSpeed: 3
-  startSizeWhenDraw: 0.5
+  rotationSpeed: 20
+  rotationSpeedP2: 500
+  movementSpeed: 4
+  scaleSpeed: 7
+  startSizeWhenDraw: 0.05
   discardedSize: 0.5
