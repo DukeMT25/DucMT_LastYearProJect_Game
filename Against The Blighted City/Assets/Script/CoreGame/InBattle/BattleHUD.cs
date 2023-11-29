@@ -8,10 +8,10 @@ public class BattleHUD : MonoBehaviour
 {
     public Slider hpSlider;
 
-    public void SetHUD(Unit unit)
+    public void SetHUD(Fighter fighter)
     {
-        hpSlider.maxValue = unit.maxHP;
-        hpSlider.value = unit.currentHP;
+        hpSlider.maxValue = fighter.maxHealth;
+        hpSlider.value = fighter.currentHealth;
     }
 
     public void SetHP(int hp)

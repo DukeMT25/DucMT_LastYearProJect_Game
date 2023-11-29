@@ -45,7 +45,7 @@ public class UiPlayerHandUtils : MonoBehaviour
         #region Operations
 
         [Button]
-        public void DrawCard()
+        public IUiCard DrawCard()
         {
             //TODO: Consider replace Instantiate by an Object Pool Pattern
             var cardGo = Instantiate(cardPrefabCs, gameView);
@@ -55,6 +55,8 @@ public class UiPlayerHandUtils : MonoBehaviour
             Count++;
             // Debug.LogWarning(PlayerHand.ToString());
             PlayerHand.AddCard(card);
+
+            return card;
         }
 
         [Button]
@@ -71,10 +73,10 @@ public class UiPlayerHandUtils : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Tab)) DrawCard();
             if (Input.GetKeyDown(KeyCode.Space)) PlayCard();
-            if (Input.GetKeyDown(KeyCode.Escape)) Restart();
+            //if (Input.GetKeyDown(KeyCode.Escape)) Restart();
         }
 
-        public void Restart() => SceneManager.LoadScene(0);
+        //public void Restart() => SceneManager.LoadScene(0);
 
         #endregion
 }

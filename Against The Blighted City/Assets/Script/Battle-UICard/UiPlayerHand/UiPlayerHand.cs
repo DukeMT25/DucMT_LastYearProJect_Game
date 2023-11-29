@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 //------------------------------------------------------------------------------------------------------------------
 
@@ -6,7 +8,8 @@ using System;
 ///     The Player Hand.
 /// </summary>
 public class UiPlayerHand : UiCardPile, IUiPlayerHand
-    {
+{
+
         //--------------------------------------------------------------------------------------------------------------
 
         #region Properties
@@ -20,14 +23,15 @@ public class UiPlayerHand : UiCardPile, IUiPlayerHand
 
         event Action<IUiCard> OnCardPlayed = card => { };
 
+
         /// <summary>
         ///     Event raised when a card is played.
         /// </summary>
         Action<IUiCard> IUiPlayerHand.OnCardPlayed
-        {
-            get => OnCardPlayed;
-            set => OnCardPlayed = value;
-        }
+                    {
+                        get => OnCardPlayed;
+                        set => OnCardPlayed = value;
+                    }
 
         /// <summary>
         ///     Event raised when a card is selected.
@@ -38,17 +42,18 @@ public class UiPlayerHand : UiCardPile, IUiPlayerHand
             set => OnCardSelected = value;
         }
 
-        #endregion
 
-        //--------------------------------------------------------------------------------------------------------------
+    #endregion
 
-        #region Operations
+    //--------------------------------------------------------------------------------------------------------------
 
-        /// <summary>
-        ///     Select the card in the parameter.
-        /// </summary>
-        /// <param name="card"></param>
-        public void SelectCard(IUiCard card)
+    #region Operations
+
+    /// <summary>
+    ///     Select the card in the parameter.
+    /// </summary>
+    /// <param name="card"></param>
+    public void SelectCard(IUiCard card)
         {
             SelectedCard = card ?? throw new ArgumentNullException("Null is not a valid argument.");
 
@@ -111,8 +116,12 @@ public class UiPlayerHand : UiCardPile, IUiPlayerHand
         public void DisableCards()
         {
             foreach (var otherCard in Cards)
+            {
                 otherCard.Disable();
-        }
+                Debug.Log("Card disabled");
+            }
+                
+    }
 
         /// <summary>
         ///     Enables input for all cards.

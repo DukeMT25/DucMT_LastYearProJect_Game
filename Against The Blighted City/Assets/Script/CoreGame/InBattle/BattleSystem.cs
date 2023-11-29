@@ -29,8 +29,8 @@ public class BattleSystem : MonoBehaviour
     // public Transform enemyPos3;
     // public Transform enemyPos4;
 
-    Unit playerUnit;
-    Unit enemyUnit;
+    //Unit playerUnit;
+    //Unit enemyUnit;
 
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
@@ -48,12 +48,12 @@ public class BattleSystem : MonoBehaviour
     IEnumerator SetupBattle()
     {
         //Player
-        GameObject playerGO = Instantiate(playerPrefab, playerPos);
-        playerUnit = playerGO.GetComponent<Unit>();
+        //GameObject playerGO = Instantiate(playerPrefab, playerPos);
+        //playerUnit = playerGO.GetComponent<Unit>();
 
         //Default Enemy
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyPos);
-        enemyUnit = enemyGO.GetComponent<Unit>();
+        //GameObject enemyGO = Instantiate(enemyPrefab, enemyPos);
+        //enemyUnit = enemyGO.GetComponent<Unit>();
 
         //Other Enemy
         // CheckNumber(enemyPrefab2, enemyPos2);
@@ -62,8 +62,8 @@ public class BattleSystem : MonoBehaviour
 
 
         //HUD
-        playerHUD.SetHUD(playerUnit);
-        enemyHUD.SetHUD(enemyUnit);
+        //playerHUD.SetHUD(playerUnit);
+        //enemyHUD.SetHUD(enemyUnit);
 
         //starting cards
         for (int i = 0; i < 5; i++)

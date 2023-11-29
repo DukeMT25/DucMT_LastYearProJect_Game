@@ -116,7 +116,10 @@ public class UiCardComponent : MonoBehaviour, IUiCard
         Fsm.Select();
     }
 
-    public void Unselect() => Fsm.Unselect();
+    public void Unselect()
+    {
+        Fsm.Unselect();
+    }
 
     public void Draw() => Fsm.Draw();
 
