@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(UiCardDiscardPile))]
@@ -35,14 +34,27 @@ public class UiCardDiscardSorter : MonoBehaviour
         var backGravPos = discardPosition.position;
 
         //move last
-        lastCard.MoveToWithZ(disPos, parameters.MovementSpeed);
+        StartCoroutine(MoveAndDeactivate(lastCard, disPos, parameters.MovementSpeed));
 
         //move others
         for (var i = 0; i < cards.Length - 1; i++)
         {
             var card = cards[i];
+            card.transform.rotation = Quaternion.Euler(0, 0, -12.5f);
             card.MoveToWithZ(backGravPos, parameters.MovementSpeed);
         }
+    }
+
+    IEnumerator MoveAndDeactivate(IUiCard card, Vector3 targetPosition, float movementSpeed)
+    {
+        // Move the card to the target position
+        card.MoveToWithZ(targetPosition, movementSpeed);
+
+        // Wait until the movement is complete
+        yield return new WaitForSecondsRealtime(1f);
+
+        // Set the game object inactive
+        card.gameObject.SetActive(false);
     }
 
     //--------------------------------------------------------------------------------------------------------------

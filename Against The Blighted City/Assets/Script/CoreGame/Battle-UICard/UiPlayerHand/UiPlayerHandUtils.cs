@@ -44,7 +44,7 @@ public class UiPlayerHandUtils : MonoBehaviour
 
         #region Operations
 
-        [Button]
+        //[Button]
         public IUiCard DrawCard()
         {
             //TODO: Consider replace Instantiate by an Object Pool Pattern
@@ -59,7 +59,7 @@ public class UiPlayerHandUtils : MonoBehaviour
             return card;
         }
 
-        [Button]
+        //[Button]
         public void PlayCard()
         {
             if (PlayerHand.Cards.Count > 0)
@@ -71,8 +71,8 @@ public class UiPlayerHandUtils : MonoBehaviour
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Tab)) DrawCard();
-            if (Input.GetKeyDown(KeyCode.Space)) PlayCard();
+            //if (Input.GetKeyDown(KeyCode.Tab)) DrawCard();
+            //if (Input.GetKeyDown(KeyCode.Space)) PlayCard();
             //if (Input.GetKeyDown(KeyCode.Escape)) Restart();
         }
 

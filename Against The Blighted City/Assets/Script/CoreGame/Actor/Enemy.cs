@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
     }
     private IEnumerator AttackPlayer()
     {
-        animator.Play("Attack");
+        //animator.Play("Attack");
         //if (bird)
         //    battleSceneManager.birdIcon.GetComponent<Animator>().Play("Attack");
 

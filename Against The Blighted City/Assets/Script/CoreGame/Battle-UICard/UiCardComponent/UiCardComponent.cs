@@ -106,7 +106,7 @@ public class UiCardComponent : MonoBehaviour, IUiCard
 
     public void Enable() => Fsm.Enable();
 
-    public void Select()
+    public virtual void Select()
     {
         // to avoid the player selecting enemy's cards
         if (!IsPlayer)

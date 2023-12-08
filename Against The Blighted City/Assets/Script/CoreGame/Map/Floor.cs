@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static SceneManager;
 using UnityEngine.UI;
 
 public class Floor : MonoBehaviour

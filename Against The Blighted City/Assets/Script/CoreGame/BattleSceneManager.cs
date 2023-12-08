@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class BattleSceneManager : MonoBehaviour
 {
     [Header("Cards")]
-    public List<Card> deck;
+    public List<CardUI> deck;
     public List<Card> drawPile = new List<Card>();
-    public List<Card> cardsInHand = new List<Card>();
+    public List<CardUI> cardsInHand = new List<CardUI>();
     public List<Card> discardPile = new List<Card>();
     public CardUI selectedCard;
-    public List<CardUI> cardsInHandGameObjects = new List<CardUI>();
 
-    protected IUiPlayerHand CardHand { get; set; }
+    [SerializeField] UiPlayerHand CardHand;
     [SerializeField] UiPlayerHandUtils CardDrawer;
 
     [Header("Stats")]
@@ -41,7 +40,7 @@ public class BattleSceneManager : MonoBehaviour
     public GameObject[] possibleEnemies;
     public GameObject[] possibleElites;
     bool eliteFight;
-    public GameObject birdIcon;
+
     CardActions cardActions;
     GameManager gameManager;
     PlayerStatsUI playerStatsUI;
@@ -54,7 +53,7 @@ public class BattleSceneManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         cardActions = GetComponent<CardActions>();
         playerStatsUI = FindObjectOfType<PlayerStatsUI>();
-        endScreen = FindObjectOfType<EndScreen>();
+
     }
     public void StartHallwayFight()
     {
@@ -68,12 +67,9 @@ public class BattleSceneManager : MonoBehaviour
     public void BeginBattle(GameObject[] prefabsArray)
     {
         turnText.text = "Player's Turn";
-        banner.Play("bannerOut");
-
-        //playerIcon.SetActive(true);
 
         GameObject newEnemy = Instantiate(prefabsArray[Random.Range(0, prefabsArray.Length)], enemyParent);
-        endScreen = FindObjectOfType<EndScreen>();
+
         if (endScreen != null)
             endScreen.gameObject.SetActive(false);
 
@@ -81,34 +77,28 @@ public class BattleSceneManager : MonoBehaviour
         enemies = new List<Enemy>();
 
         #region discard hand
-        foreach (Card card in cardsInHand)
-        {
-            DiscardCard(card);
-        }
-        foreach (CardUI cardUI in cardsInHandGameObjects)
-        {
-            cardUI.gameObject.SetActive(false);
-            cardsInHand.Remove(cardUI.card);
-        }
+        
+        ClearHand();
+
         #endregion
 
         discardPile = new List<Card>();
         drawPile = new List<Card>();
-        cardsInHand = new List<Card>();
+        cardsInHand = new List<CardUI>();
 
         foreach (Enemy e in eArr) { enemies.Add(e); }
         foreach (Enemy e in eArr) { enemyFighters.Add(e.GetComponent<Fighter>()); }
         foreach (Enemy e in enemies) e.DisplayIntent();
 
+        energy = maxEnergy;
+
         discardPile.AddRange(gameManager.playerDeck);
         ShuffleCards();
         DrawCards(drawAmount);
-        energy = maxEnergy;
-        energyText.text = energy.ToString();
 
         #region relic checks
 
-        if (gameManager.PlayerHasRelic("PreservedInsect") && eliteFight)
+        if (gameManager.PlayerHasRelic("Preserved Insect") && eliteFight)
             enemyFighters[0].currentHealth = (int)(enemyFighters[0].currentHealth * 0.25);
 
         if (gameManager.PlayerHasRelic("Anchor"))
@@ -117,24 +107,26 @@ public class BattleSceneManager : MonoBehaviour
         if (gameManager.PlayerHasRelic("Lantern"))
             energy += 1;
 
-        if (gameManager.PlayerHasRelic("Marbles"))
+        if (gameManager.PlayerHasRelic("BagofMarbles"))
             enemyFighters[0].AddBuff(Buff.Type.vulnerable, 1);
 
-        if (gameManager.PlayerHasRelic("Bag"))
+        if (gameManager.PlayerHasRelic("BagofPreparation"))
             DrawCards(2);
 
-        if (gameManager.PlayerHasRelic("Varja"))
+        if (gameManager.PlayerHasRelic("Vajra"))
             player.AddBuff(Buff.Type.strength, 1);
 
         #endregion
 
-        //if (enemies[0].bird)
-        //    birdIcon.SetActive(true);
+
+
+        energyText.text = energy.ToString();
+
     }
     public void ShuffleCards()
     {
         discardPile.Shuffle();
-        drawPile = discardPile;
+        drawPile = new List<Card>(discardPile);
         discardPile = new List<Card>();
         discardPileCountText.text = discardPile.Count.ToString();
     }
@@ -149,24 +141,15 @@ public class BattleSceneManager : MonoBehaviour
             var drawnCard = CardDrawer.DrawCard();
             CardUI upperLayer = drawnCard.gameObject.GetComponentInChildren<CardUI>();
 
-            //cardsInHand.Add(drawPile[0]);
-            //DisplayCardInHand(drawPile[0]);
             upperLayer.LoadCard(drawPile[0]);
-            //cardsInHandGameObjects[cardsInHand.Count - 1] = upperLayer;
+
+            cardsInHand.Add(upperLayer);
 
             drawPile.Remove(drawPile[0]);
             drawPileCountText.text = drawPile.Count.ToString();
             cardsDrawn++;
         }
     }
-    //public void DisplayCardInHand(Card card)
-    //{
-    //    CardUI cardUI = cardsInHandGameObjects[cardsInHand.Count - 1];
-    //    // !!! WARN
-    //    cardUI.LoadCard(card);
-    //    cardUI.gameObject.SetActive(true);
-    //}
-
     
     public void PlayCard(CardUI cardUI)
     {
@@ -181,18 +164,16 @@ public class BattleSceneManager : MonoBehaviour
 
             cardActions.PerformAction(cardUI.card, cardTarget);
 
-            energy -= cardUI.card.GetCardCostAmount();
+            energy -= cardUI.GetCardCostAmount();
             energyText.text = energy.ToString();
 
-            // WARN
-            //Instantiate(cardUI.discardEffect, cardUI.transform.position, Quaternion.identity, topParent);
+            CardHand?.PlaySelected();
 
             selectedCard = null;
             cardTarget = null;
 
-            cardUI.gameObject.SetActive(false);
-            cardsInHand.Remove(cardUI.card);
             DiscardCard(cardUI.card);
+            cardsInHand.Remove(cardUI);
         }
     }
     public void DiscardCard(Card card)
@@ -200,6 +181,20 @@ public class BattleSceneManager : MonoBehaviour
         discardPile.Add(card);
         discardPileCountText.text = discardPile.Count.ToString();
     }
+
+    public void ClearHand()
+    {
+        // Clear Hand
+        List<CardUI> cardsInHandCopy = new List<CardUI>(cardsInHand);
+        for (int i = cardsInHandCopy.Count - 1; i >= 0; i--)
+        {
+            if (CardHand.Cards.Count >= 1) CardHand.PlayCard(CardHand.Cards.RandomItem());
+
+            DiscardCard(cardsInHandCopy[i].card);
+            cardsInHand.Remove(cardsInHandCopy[i]);
+        }
+    }
+
     public void ChangeTurn()
     {
         Debug.Log("ChangeTurn called. Player: " + player + ", FighterHealthBar: " + (player != null ? player.fighterHealthBar : "null"));
@@ -209,20 +204,7 @@ public class BattleSceneManager : MonoBehaviour
             turn = Turn.Enemy;
             endTurnButton.enabled = false;
 
-            #region discard hand
-            foreach (Card card in cardsInHand)
-            {
-                DiscardCard(card);
-            }
-            foreach (CardUI cardUI in cardsInHandGameObjects)
-            {
-                // WARN II
-                //if (cardUI.gameObject.activeSelf) Instantiate(cardUI.discardEffect, cardUI.transform.position, Quaternion.identity, topParent);
-
-                cardUI.gameObject.SetActive(false);
-                cardsInHand.Remove(cardUI.card);
-            }
-            #endregion
+            ClearHand();
 
             foreach (Enemy e in enemies)
             {
@@ -259,13 +241,11 @@ public class BattleSceneManager : MonoBehaviour
             DrawCards(drawAmount);
 
             turnText.text = "Player's Turn";
-            banner.Play("bannerOut");
         }
     }
     private IEnumerator HandleEnemyTurn()
     {
         turnText.text = "Enemy's Turn";
-        banner.Play("bannerIn");
 
         yield return new WaitForSeconds(1.5f);
 
@@ -284,7 +264,7 @@ public class BattleSceneManager : MonoBehaviour
         if (!win)
             gameover.SetActive(true);
 
-        if (gameManager.PlayerHasRelic("BurningBlood"))
+        if (gameManager.PlayerHasRelic("Burning Blood"))
         {
             player.currentHealth += 6;
             if (player.currentHealth > player.maxHealth)
@@ -294,13 +274,12 @@ public class BattleSceneManager : MonoBehaviour
         }
 
         player.ResetBuffs();
+        ClearHand();
         HandleEndScreen();
 
         gameManager.UpdateFloorNumber();
         gameManager.UpdateGoldNumber(enemies[0].goldDrop);
 
-        if (enemies[0].bird)
-            birdIcon.SetActive(false);
     }
     public void HandleEndScreen()
     {

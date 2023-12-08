@@ -44,3 +44,6 @@ TagManager:
   - name: GameLayer
     uniqueID: 446225723
     locked: 0
+  - name: Discard
+    uniqueID: 1278816447
+    locked: 0

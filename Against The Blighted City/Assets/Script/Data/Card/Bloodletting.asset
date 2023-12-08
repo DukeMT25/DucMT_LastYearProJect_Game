@@ -18,14 +18,14 @@ MonoBehaviour:
     baseAmount: Lose 3 HP. Gain 2 RedEnergy.
     upgradedAmount: Lose 3 HP. Gain 3 RedEnergy.
   cardCost:
-    baseAmount: 0
+    baseAmount: 1
     upgradedAmount: 0
   cardEffect:
     baseAmount: 0
     upgradedAmount: 0
   buffAmount:
-    baseAmount: 0
-    upgradedAmount: 0
+    baseAmount: 5
+    upgradedAmount: 5
   cardIcon: {fileID: 21300000, guid: 805338ef1d2519545b5dfa09f06be24b, type: 3}
   cardType: 1
   cardClass: 0

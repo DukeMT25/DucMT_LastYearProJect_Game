@@ -24,8 +24,8 @@ MonoBehaviour:
     baseAmount: 5
     upgradedAmount: 7
   buffAmount:
-    baseAmount: 0
-    upgradedAmount: 0
+    baseAmount: 5
+    upgradedAmount: 7
   cardIcon: {fileID: 21300000, guid: 63a3d16d7c797cc46be349bf3ea3cb79, type: 3}
   cardType: 0
   cardClass: 0

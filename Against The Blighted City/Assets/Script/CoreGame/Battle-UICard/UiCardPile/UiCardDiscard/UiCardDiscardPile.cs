@@ -44,7 +44,7 @@ public class UiCardDiscardPile : UiCardPile
             throw new ArgumentNullException("Null is not a valid argument.");
 
         Cards.Add(card);
-        card.transform.SetParent(graveyardPosition);
+        card.transform.SetParent(graveyardPosition);   
         card.Discard();
         NotifyPileChange();
     }

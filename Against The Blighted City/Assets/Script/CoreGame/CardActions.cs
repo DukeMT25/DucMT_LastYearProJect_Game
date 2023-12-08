@@ -36,11 +36,11 @@ public class CardActions : MonoBehaviour
                 AttackEnemy();
                 ApplyBuff(Buff.Type.weak);
                 break;
-            case "ShrugItOff":
+            case "Shrug it Off":
                 PerformBlock();
                 battleSceneManager.DrawCards(1);
                 break;
-            case "IronWave":
+            case "Iron Wave":
                 AttackEnemy();
                 PerformBlock();
                 break;
@@ -62,6 +62,7 @@ public class CardActions : MonoBehaviour
     private void AttackEnemy()
     {
         int totalDamage = card.GetCardEffectAmount() + player.strength.buffValue;
+        Debug.Log(totalDamage);
         if (target.vulnerable.buffValue > 0)
         {
             float a = totalDamage * 1.5f;

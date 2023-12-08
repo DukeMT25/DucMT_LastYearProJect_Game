@@ -17,25 +17,25 @@ public class UiZoneTarget : UiBaseDropZone
 
     protected override void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("clicked");
+        //Debug.Log("clicked");
         CardHand?.Unselect();
 
-        if (enemyFighter == null)
-        {
-            Debug.Log("fighta is null");
-            battleSceneManager = FindObjectOfType<BattleSceneManager>();
-            enemyFighter = GetComponent<Fighter>();
-            CardHand?.Unselect();
-        }
-        if (battleSceneManager.selectedCard != null && battleSceneManager.selectedCard.card.cardType == Card.CardType.Attack)
-        {
-            Debug.Log("oh my god");
-            battleSceneManager.cardTarget = enemyFighter;
-            CardHand?.PlaySelected();
+        //if (enemyFighter == null)
+        //{
+        //    Debug.Log("fighta is null");
+        //    battleSceneManager = FindObjectOfType<BattleSceneManager>();
+        //    enemyFighter = GetComponent<Fighter>();
+        //    CardHand?.Unselect();
+        //}
+        //if (battleSceneManager.selectedCard != null && battleSceneManager.selectedCard.card.cardType == Card.CardType.Attack)
+        //{
+        //    Debug.Log("oh my god");
+        //    battleSceneManager.cardTarget = enemyFighter;
+        //    CardHand?.PlaySelected();
 
-        }
+        //}
 
-        CardHand?.Unselect();
+        //CardHand?.Unselect();
     }
 
 }

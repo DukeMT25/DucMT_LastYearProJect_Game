@@ -4,35 +4,38 @@ using UnityEngine;
 
 public class CardTarget : MonoBehaviour
 {
+    IUiPlayerHand cardHand { get; set; }
+
     BattleSceneManager battleSceneManager;
     Fighter enemyFighter;
 
-    UiZoneTarget dropZonetg; 
+    [SerializeField] UiPlayerHand hand;
 
     private void Awake()
     {
+        cardHand = hand;
         battleSceneManager = FindObjectOfType<BattleSceneManager>();
         enemyFighter = GetComponent<Fighter>();
     }
-    public void PointerEnter()
+    public void PointerUp()
     {
         if (enemyFighter == null)
         {
             Debug.Log("fighta is null");
-            battleSceneManager = FindObjectOfType<BattleSceneManager>();
-            enemyFighter = GetComponent<Fighter>();
-        }
 
-        if (battleSceneManager.selectedCard != null && battleSceneManager.selectedCard.card.cardType == Card.CardType.Attack)
-        {
-            //target == enemy
-            battleSceneManager.cardTarget = enemyFighter;
-            //Debug.Log("set target");
+            cardHand?.Unselect();
         }
-    }
-    public void PointerExit()
-    {
-        battleSceneManager.cardTarget = null;
-        //Debug.Log("drop target");
+        else
+        {
+            //if (battleSceneManager.selectedCard.card.cardType == Card.CardType.Attack)
+            //{
+                //Debug.Log("oh my god");
+                battleSceneManager.cardTarget = enemyFighter;
+                //cardHand?.PlaySelected();
+                battleSceneManager.PlayCard(battleSceneManager.selectedCard);
+            //}
+            //else if (battleSceneManager.selectedCard.card.cardType == Card.CardType.Skill || )
+        }
+        
     }
 }

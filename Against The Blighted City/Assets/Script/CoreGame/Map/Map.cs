@@ -61,7 +61,7 @@ public class Map : MonoBehaviour
             else
                 floors[i].SetNodesActive(enemyEncounter);
         }
-        //ShowOptions();
+        ShowOptions();
     }
     public void ConnectFloors(Floor parentNodes, Floor childNodes)
     {

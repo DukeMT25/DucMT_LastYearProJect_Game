@@ -68,6 +68,14 @@ public class GameManager : MonoBehaviour
 
     public void DisplayHealth(int healthAmount, int maxHealth)
     {
-        //playerStatsUI.healthDisplayText.text = $"{healthAmount} / {maxHealth}";
+        if (playerStatsUI != null && playerStatsUI.healthDisplayText != null)
+        {
+            playerStatsUI.healthDisplayText.text = healthAmount.ToString() + "/" + maxHealth.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("PlayerStatsUI or healthDisplayText is null.");
+        }
     }
+
 }

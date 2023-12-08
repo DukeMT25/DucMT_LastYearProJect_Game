@@ -12,7 +12,6 @@ public class SceneManager : MonoBehaviour
     public GameObject restScene;
     public GameObject idleScene;
     public GameObject mapScene;
-    public EndScreen endScreen;
 
     [Header("UI")]
     public Image splashArt;
@@ -24,14 +23,14 @@ public class SceneManager : MonoBehaviour
     public GameObject playerIcon;
     GameManager gameManager;
     BattleSceneManager battleSceneManager;
-    //EndScreen endScreen;
+    EndScreen endScreen;
     SceneFader sceneFader;
     public enum Encounter { enemy, boss, restSite }
     private void Awake()
     {
         gameManager = GetComponent<GameManager>();
         battleSceneManager = FindObjectOfType<BattleSceneManager>();
-        //endScreen = FindObjectOfType<EndScreen>();
+        endScreen = FindObjectOfType<EndScreen>();
         sceneFader = FindObjectOfType<SceneFader>();
     }
     public void PlayButton()
@@ -46,8 +45,6 @@ public class SceneManager : MonoBehaviour
     }
     public void Embark()
     {
-        //gameManager.character = selectedCharacter;
-
         StartCoroutine(LoadScene("Map"));
         gameManager.LoadCharacterStats();
     }
@@ -91,7 +88,7 @@ public class SceneManager : MonoBehaviour
         if (sceneToLoad == "Map")
         {
             //playerIcon.SetActive(false);
-            //classSelectionScreen.SetActive(false);
+            classSelectionScreen.SetActive(false);
             mapScene.SetActive(true);
             chestScene.SetActive(false);
             restScene.SetActive(false);

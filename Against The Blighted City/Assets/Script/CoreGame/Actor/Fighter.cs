@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Fighter : MonoBehaviour
@@ -31,19 +32,15 @@ public class Fighter : MonoBehaviour
 
 
 
+        currentHealth = maxHealth;
+        fighterHealthBar.healthSlider.maxValue = maxHealth;
+        fighterHealthBar.DisplayHealth(currentHealth);
+
+        
         if (isPlayer)
         {
             gameManager.DisplayHealth(currentHealth, maxHealth);
-            fighterHealthBar.healthSlider.maxValue = maxHealth;
-            fighterHealthBar.DisplayHealth(currentHealth);
         }
-        else
-        {
-            currentHealth = maxHealth;
-            fighterHealthBar.healthSlider.maxValue = maxHealth;
-            fighterHealthBar.DisplayHealth(currentHealth);
-        }
-        //if (isPlayer) gameManager.DisplayHealth(currentHealth, currentHealth);
 
 
     }
@@ -52,14 +49,14 @@ public class Fighter : MonoBehaviour
         if (currentBlock > 0)
             amount = BlockDamage(amount);
 
-        if (enemy != null && enemy.wiggler && currentHealth == maxHealth)
-            enemy.CurlUP();
+        //if (enemy != null && enemy.wiggler && currentHealth == maxHealth)
+        //    enemy.CurlUP();
 
         Debug.Log($"dealt {amount} damage");
 
         DamageIndicator di = Instantiate(damageIndicator, this.transform).GetComponent<DamageIndicator>();
         di.DisplayDamage(amount);
-        Destroy(di, 2f);
+        Destroy(di.gameObject, 0.4f);
 
         currentHealth -= amount;
         UpdateHealthUI(currentHealth);
@@ -120,6 +117,7 @@ public class Fighter : MonoBehaviour
                 vulnerable.buffGO = Instantiate(buffPrefab, buffParent).GetComponent<BuffUI>();
             }
             vulnerable.buffValue += amount;
+            Debug.Log(vulnerable.buffValue.ToString());
             vulnerable.buffGO.DisplayBuff(vulnerable);
         }
         else if (type == Buff.Type.weak)

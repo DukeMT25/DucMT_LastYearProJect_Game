@@ -118,7 +118,7 @@ public class UiPlayerHand : UiCardPile, IUiPlayerHand
             foreach (var otherCard in Cards)
             {
                 otherCard.Disable();
-                Debug.Log("Card disabled");
+                //Debug.Log("Card disabled");
             }
                 
     }
