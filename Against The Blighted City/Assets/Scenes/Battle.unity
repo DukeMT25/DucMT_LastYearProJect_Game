@@ -3218,7 +3218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5633,6 +5633,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relicImage: {fileID: 929362682}
   relicName: {fileID: 1402840998}
+  relicDescription: {fileID: 0}
+  relicType: {fileID: 0}
+  relicCost: {fileID: 0}
 --- !u!1 &809259316
 GameObject:
   m_ObjectHideFlags: 0
@@ -7394,6 +7397,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relicImage: {fileID: 462461383}
   relicName: {fileID: 1813672868}
+  relicDescription: {fileID: 0}
+  relicType: {fileID: 0}
+  relicCost: {fileID: 0}
 --- !u!114 &1089165155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7688,7 +7694,7 @@ MonoBehaviour:
   enemyIcon: {fileID: 0}
   EliteIcon: {fileID: 0}
   eliteFloors: -1
-  chestFloors: 0
+  chestFloors: 3
   restFloors: 6
   enemyEncounter:
     encounterType: 0
@@ -7905,6 +7911,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   relicImage: {fileID: 1324635011}
   relicName: {fileID: 819563959}
+  relicDescription: {fileID: 0}
+  relicType: {fileID: 0}
+  relicCost: {fileID: 0}
 --- !u!1 &1175028779
 GameObject:
   m_ObjectHideFlags: 0

@@ -904,3 +904,5 @@ MonoBehaviour:
   relicImage: {fileID: 7933639823891896938}
   relicName: {fileID: 2709111892353984476}
   relicDescription: {fileID: 2709111892293037066}
+  relicType: {fileID: 2709111893172981270}
+  relicCost: {fileID: 2709111891882232884}
