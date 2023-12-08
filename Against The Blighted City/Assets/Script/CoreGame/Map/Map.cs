@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Map : MonoBehaviour
 {
     public List<Floor> floors;
-    //public List<EncounterHeiarchy> allEncounters;
     public GameObject encounterPrefab;
     public Image enemyIcon, EliteIcon;
     public int eliteFloors;
@@ -74,23 +73,13 @@ public class Map : MonoBehaviour
             }
         }
     }
-    // public IEnumerator Delayedclicky()
-    // {
-    //     yield return new WaitForSeconds(1);
-    //     ShowOptions();
-    // }
+
     private void OnEnable()
     {
         ShowOptions();
     }
 }
 
-// public class EncounterHeiarchy:MonoBehaviour
-// {
-//     public List<Encounter> encounterParents;
-//     public Encounter encounterSelf;
-//     public List<Encounter> encounterChildren;
-// }
 [System.Serializable]
 public struct Encounter
 {
